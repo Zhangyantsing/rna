@@ -1,5 +1,7 @@
 package com.bio.rna;
 
+import com.bio.rna.database.TBHelper;
+
 /**
  * Hello world!
  *
@@ -8,6 +10,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        TBHelper.createModTb("shishi");
     }
 }
