@@ -39,9 +39,9 @@ public class FileTransformer {
 					subsplitedS = splitedS[0].split("--");
 					type = subsplitedS[0];
 					gene_rank = 0;
-					gene = null;
+					gene = "\\N";
 					gene_total = 0;
-					gene_des = null;
+					gene_des = "\\N";
 				}
 				else{
 					type = subsplitedS[0].trim();
@@ -55,7 +55,7 @@ public class FileTransformer {
 						gene_total = Integer.parseInt(subsplitedS[3]);
 					}
 					else{
-						gene_des = null;
+						gene_des = "\\N";
 						gene_rank = 0;
 						gene_total = 0;
 					}
@@ -63,6 +63,8 @@ public class FileTransformer {
 				writer.write(chr + tab + strand + tab + start + tab + end + tab + shortType + tab + description + tab + type + tab
 						+ gene + tab + gene_des + tab + gene_rank + tab + gene_total + "\n");
 			}
+			reader.close();
+			writer.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

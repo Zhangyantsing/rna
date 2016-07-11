@@ -82,12 +82,14 @@ public class DBHelper {
             		rst.getValue().close();
             		rsts.remove(rst.getKey());
             	}
+            	rsts = null;
             }
             if (psts != null){
             	for(Map.Entry<String, PreparedStatement> pst: psts.entrySet()){
             		pst.getValue().close();
             		psts.remove(pst.getKey());
             	}
+            	psts = null;
             }
             if (conn != null){
                 conn.close();
@@ -103,6 +105,21 @@ public class DBHelper {
     	try{
     		psts.put(label, conn.prepareStatement(sql));
     	}catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void close(String label){
+    	try{
+    		if(psts.containsKey(label)){
+    			psts.get(label).close();
+        		psts.remove(label);
+    		}
+    		if(rsts.containsKey(label)){
+    			rsts.get(label).close();
+        		rsts.remove(label);
+    		}
+
+    	}catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -165,5 +182,6 @@ public class DBHelper {
                 e.printStackTrace();
             }
         }
+        System.out.println(pst);
     }
 }
